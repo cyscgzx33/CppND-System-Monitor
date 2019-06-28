@@ -3,12 +3,11 @@
 
 // Classic helper function
 class Util {
-
-public:
-
-static std::string convertToTime ( long int input_seconds );
-static std::string getProgressBar(std::string percent);
-static void getStream(std::string path, std::ifstream& stream);
+  public:
+    static std::string convertToTime ( long int input_seconds );
+    static std::string getProgressBar(std::string percent);
+    static void getStream(std::string path, std::ifstream& stream);
+    static std::ifstream getStream_(std::string path);
 };
 
 std::string Util::convertToTime (long int input_seconds){
@@ -54,4 +53,13 @@ void Util::getStream(std::string path, std::ifstream& stream){
         throw std::runtime_error("Non - existing PID");
     }
     //return stream;
+}
+
+// Another version of Util::getStream
+std::ifstream Util::getStream_(std::string path) {
+    std::ifstream stream(path);
+    if (!stream) {
+        throw std::runtime_error("Non-existing PID.");
+    }
+    return stream;
 }
